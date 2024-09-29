@@ -24,6 +24,7 @@ log_df = spark.read.text(input_path)
 # Define a regex pattern to match log entries
 log_pattern = r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}), (\w+): (.*?)(?:, \((\w+)\))?$'
 
+
 # Function to parse a single log line
 def parse_log_line(line):
     matches = re.match(log_pattern, line)
@@ -31,6 +32,7 @@ def parse_log_line(line):
         return matches.groups()
     else:
         return (None, None, None, None)
+
 
 # Parse the logs using the regex
 parsed_logs = log_df.rdd.map(lambda row: parse_log_line(row[0]))

@@ -6,7 +6,7 @@ from typing import Optional
 
 def upload_directory_to_s3(local_directory: str, bucket_name: str, s3_prefix: Optional[str] = '') -> None:
     """Upload all files from a local directory to an S3 bucket."""
-    s3_client = boto3.client('s3')  # Boto3 will automatically use credentials from environment variables
+    s3_client = boto3.client('s3')
 
     for root, dirs, files in os.walk(local_directory):
         for filename in files:

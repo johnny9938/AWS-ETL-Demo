@@ -114,8 +114,11 @@ def execute_query(n_clicks, query, selected_table, executed_queries):
             status = query_status_response['QueryExecution']['Status']['State']
             if status == 'SUCCEEDED':
                 break
-            elif status in ['FAILED', 'CANCELLED']:
-                return f"Query failed or was cancelled: {status}", "", executed_queries
+            elif status == 'FAILED':
+                return f"Error: Query failed - {query_status_response['QueryExecution']['Status']['StateChangeReason']}", "", executed_queries
+            elif status == 'CANCELLED':
+                return f"Error: Query was cancelled", "", executed_queries
+
             time.sleep(1)
 
         # Fetch the results

@@ -42,6 +42,7 @@ ERROR_MESSAGES = [
     "Email sending failed"
 ]
 
+
 def generate_log_entry(severity):
     """Generate a log entry based on severity level."""
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -59,6 +60,7 @@ def generate_log_entry(severity):
         message = random.choice(ERROR_MESSAGES)
         error_id = random.randint(2001, 2010)  # Generate unique error ID
         return f"{timestamp}, ERROR: {message}, (E{error_id})"
+
 
 def generate_log_file(output_folder, file_index, num_lines, error_percentage, warning_percentage):
     """Generate a single log file."""
@@ -81,6 +83,7 @@ def generate_log_file(output_folder, file_index, num_lines, error_percentage, wa
 
     print(f"Generated {log_filename} with {num_lines} lines.")
 
+
 def generate_logs(output_folder, num_files, num_lines_per_file, error_percentage, warning_percentage):
     """Generate multiple log files."""
     if not os.path.exists(output_folder):
@@ -88,6 +91,7 @@ def generate_logs(output_folder, num_files, num_lines_per_file, error_percentage
 
     for i in range(num_files):
         generate_log_file(output_folder, i + 1, num_lines_per_file, error_percentage, warning_percentage)
+
 
 if __name__ == "__main__":
     # Parameters
